@@ -1,7 +1,5 @@
 <template>
     <div>
-    
-    
         <div class="header">
             <div class="boult">
                 <span class="el-icon-arrow-left" @click="go()"></span>
@@ -19,7 +17,7 @@
             <div>
                 <!-- 这里跳转购物车 -->
                 <p class="wait-p">再来一单</p>
-                
+    
             </div>
         </div>
         <!-- 我的部分 -->
@@ -74,7 +72,7 @@
             </div>
         </div>
         <div class="last">
-            <header>配送信息</header>
+            <header>订单信息</header>
             <div class="sold"></div>
             <div class="last1">
                 <span>订单号:</span>
@@ -85,7 +83,7 @@
                 <span>在线支付</span>
             </div>
             <div class="last3">
-               <span>下单时间:</span>
+                <span>下单时间:</span>
                 <span>2019-2-25 11:42</span>
             </div>
         </div>
@@ -158,7 +156,7 @@
         text-align: center;
         border: 0.01rem solid #3190e8;
         color: #3190e8;
-        height: 0.2rem;
+        /* height: 0.2rem; */
         line-height: 0.2rem;
         font-size: 0.1rem;
         margin-left: 1.55rem;
@@ -212,7 +210,7 @@
     
     .mede4 {
         float: right;
-        margin-top: 0.1rem;
+        margin: 0.1rem;
         color: orange;
     }
     
@@ -259,7 +257,7 @@
     }
     
     .last {
-        margin-top: 0.2rem;
+        margin-top: 0.3rem;
         background-color: white;
         height: 2rem;
         padding: 0.1rem;
@@ -269,19 +267,25 @@
         font-size: 0.2rem;
         color: #333;
     }
+    
     .last1 {
-        padding-top: 0.3rem;
+        padding-top: 0.2rem;
         font-size: 0.15rem;
         color: #666;
     }
+    
     .last2 {
-        padding-top: 0.3rem;
+        padding-top: 0.2rem;
         font-size: 0.15rem;
         color: #666;
     }
-  .last3 {
-        padding-top: 0.3rem;
+    
+    .last3 {
+        padding-top: 0.2rem;
         font-size: 0.15rem;
         color: #666;
+    }
+    .el-icon-arrow-right{
+        padding-top: 0.15rem;
     }
 </style>

@@ -33,7 +33,7 @@
                         <div v-if="!isimg">
                             <img src="./img/定位.png" class="address-img1">
                         </div>
-                        <span v-if="!isOnline">请添加一个收货地址</span>
+                        <span v-if="!isOnline" class="addspan">请添加一个收货地址</span>
                         <div class="title" v-else>
                             <div v-if="index">
                                 <div class="title-top">
@@ -368,6 +368,7 @@
         /* height: 0.8rem; */
         align-items: center;
         justify-content: space-around;
+        height: 1.5rem;
     }
     
     .address-img1 {
@@ -385,10 +386,10 @@
     }
     
     .address span {
-        margin-top: 1rem;
+        /* margin-top: 1rem; */
         /* line-height: 0.8rem; */
         /* padding-left: 1rem; */
-        font-size: 0.15rem;
+        font-size: 0.2rem;
         color: black;
     }
     
@@ -553,14 +554,17 @@
     
     .result img {
         width: 0.4rem;
+        height: 0.3rem;;
         margin: 0.1rem;
     }
     
     .result span {
         color: #333;
+        font-size: 0.15rem;
+        margin-top: 0.15rem;
     }
     
-    .result-1-0 img {
+    /* .result-1-0 img {
         position: absolute;
         top: 3.8rem;
         width: 0.3rem;
@@ -571,10 +575,11 @@
         top: 4rem;
         margin-left: 0.4rem;
         font-size: 0.15rem;
-    }
+    } */
     
     .result-1-0 {
-        height: 0.25rem;
+        height: 0.4rem;
+        display: flex;
     }
     
     .result-1 {
@@ -718,6 +723,7 @@
         line-height: 0.3rem;
         margin-right: 1rem;
     }
+   
 </style>
 
 

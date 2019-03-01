@@ -205,7 +205,7 @@
     
     .con {
         background-color: white;
-        height: 3.9rem;
+        /* height: 3.9rem; */
     }
     
     .foot {

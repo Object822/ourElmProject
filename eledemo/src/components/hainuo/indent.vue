@@ -140,7 +140,7 @@
     .cont-sp p {
         font-size: 0.1rem;
         color: #aaa;
-        margin-top: 0.05rem;
+        /* margin-top: 0.05rem; */
     }
     
     .cont-p {

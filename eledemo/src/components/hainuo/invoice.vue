@@ -16,7 +16,7 @@
         
     </div>
     <!-- foot -->
-    <router-link :to="{name:'confirm'}">
+    <router-link :to="{name:'confirmOrder'}">
     <div class="foot">确定</div>
     </router-link>
   </div>

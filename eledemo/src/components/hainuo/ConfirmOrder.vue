@@ -61,6 +61,57 @@
                             </div>
                         </div>
     
+                        <div class="el-icon-arrow-right address-img2" v-if="!isli"></div>
+                    </div>
+                </router-link>
+    
+                <!-- 送达时间 -->
+                <div class="time">
+                    <el-row :gutter="20">
+                        <el-col :span="6" :offset="2">
+                            <div class="grid-content bg-purple time-left">
+                                <p>送达时间</p>
+                            </div>
+                        </el-col>
+                        <el-col :span="6" :offset="6">
+                            <div class="grid-content bg-purple time-right">
+                                <p>尽快送达&nbsp;|&nbsp;预计07:00</p>
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <div class="time-right-p">
+                        <p>蜂鸟专送</p>
+                    </div>
+                </div>
+                <!-- 支付方式 -->
+                <div class="pay">
+                    <el-row :gutter="20">
+                        <el-col :span="6" :offset="1">
+                            <div class="grid-content bg-purple">
+                                <div class="pay-left">
+                                    <span>支付方式</span>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="6" :offset="7">
+                            <div class="grid-content bg-purple">
+                                <div class="pay-right" @click="show()">
+                                    <span>在线支付</span>
+                                    <li class="el-icon-arrow-right"></li>
+                                </div>
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <div class="sold"></div>
+                    <div class="pay-bott">
+                        <span class="pay-left-1">红包</span>
+                        <span class="pay-right-2">暂时只在饿了么App中支持</span>
+                    </div>
+    
+                    <!-- 蒙版 -->
+                    <div :class="maskingclass" @click="maskingclick()"></div>
+                    <!--支付动画 -->
+                    <div v-if="show3" class="anmbig">
                         <div>
                             <el-collapse-transition>
                                 <div>

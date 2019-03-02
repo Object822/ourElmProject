@@ -78,7 +78,7 @@
         if (this.value1[1]) {
           console.log("搜索", this.value1[1], index);
           if (this.value1[1][index]) {
-            console.log("11");
+            console.log("11111111111");
           } else {
             console.log("22", this.value1[1] == null, this.value1[1]);
             if (this.value1[1] == null) {} else {

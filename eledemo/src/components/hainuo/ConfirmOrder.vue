@@ -33,17 +33,17 @@
                         <div v-if="!isimg">
                             <img src="./img/定位.png" class="address-img1">
                         </div>
-                        <span v-if="!isOnline" class="addspan">请添加一个收货地址</span>
+                        <span v-if="!isOnline&&!addData" class="addspan">请添加一个收货地址</span>
                         <div class="title" v-else>
-                            <div v-if="index">
+                            <div v-if="content">
                                 <div class="title-top">
-                                    <span style="color:#333; font-size: 0.18rem;">{{addData&&addData[index].name}}</span>
-                                    <span style="color:#333;">{{setSex(addData[index])}}</span>
-                                    <span style="color:#333;">{{addData&&addData[index].phone}}</span>
+                                    <span style="color:#333; font-size: 0.18rem;">{{content&&content[index].name}}</span>
+                                    <span style="color:#333;">{{setSex(content[index])}}</span>
+                                    <span style="color:#333;">{{content&&content[index].phone}}</span>
                                 </div>
                                 <div class="title-bot">
-                                    <span :style="{backgroundColor:setbagcolor(addData[index])}" style=" border-radius:0.03rem;  color: white">{{addData&&addData[index].tag}}</span>
-                                    <span style="color:#777;">{{addData&&addData[index].address}}</span>
+                                    <span :style="{backgroundColor:setbagcolor(content[index])}" style=" border-radius:0.03rem;  color: white">{{content&&content[index].tag}}</span>
+                                    <span style="color:#777;">{{content&&content[index].address}}</span>
                                 </div>
                             </div>
                             <div v-else>
@@ -54,8 +54,7 @@
                                 </div>
     
                                 <div class="title-bot">
-                                    <span :style="{backgroundColor:setbagcolor(addData[0])}"
-                                    style=" border-radius:0.03rem;  color: white">{{addData&&addData[0].tag}}</span>
+                                    <span :style="{backgroundColor:setbagcolor(addData[0])}" style=" border-radius:0.03rem;  color: white">{{addData&&addData[0].tag}}</span>
                                     <span style="color:#777;">{{addData&&addData[0].address}}</span>
                                 </div>
                             </div>
@@ -173,9 +172,9 @@
                         <div class="remark">
                             <span>订单备注</span>
                             <span>
-                        {{kou1}}{{kou}}
-                        <li class="el-icon-arrow-right"></li>
-                      </span>
+                            {{kou1}}{{kou}}
+                            <li class="el-icon-arrow-right"></li>
+                          </span>
                         </div>
                     </router-link>
                     <router-link :to="{name:'invoice'}">
@@ -183,8 +182,8 @@
                         <div class="bill">
                             <span>发票抬头</span>
                             <span>不需要开发票
-                        <li class="el-icon-arrow-right"></li>
-                      </span>
+                            <li class="el-icon-arrow-right"></li>
+                          </span>
                         </div>
                     </router-link>
                 </div>
@@ -192,7 +191,7 @@
                 <div class="foot">
                     <p class="foot1">待支付￥14532
                         <router-link :to="{name:'payment'}">
-                            <span class="foot2">确认下单</span>
+                            <span class="foot2" @click="quer()">确认下单</span>
                         </router-link>
                     </p>
                 </div>
@@ -215,9 +214,15 @@
                 iscolor: "",
                 addData: "",
                 // 用户登录状态
-                isOnline: false,
+                isOnline: true,
                 isimg: false,
-                isli: false
+                isli: false,
+                //确认付款请求
+                user_id: "",
+                cart_id: "",
+                address_id: "",
+                restaurant_id: "",
+                entities: ""
             };
         },
         methods: {
@@ -257,7 +262,24 @@
                 } else {
                     return "";
                 }
+            },
+            quer() {
+                this.$http({
+                    methods: "post",
+                    url: "https://elm.cangdu.org/v1/users/:user_id/carts/:cart_id/orders",
+                    data: {
+                        user_id: this.user_id,
+                        cart_id: this.cart_id,
+                        address_id: this.address_id,
+                        restaurant_id: this.restaurant_id,
+                        entities: this.entities
+                    }.then((res) => {
+                        console.log(res);
+    
+                    })
+                })
             }
+    
         },
         computed: {
             key() {
@@ -265,13 +287,6 @@
             }
         },
         created() {
-            // console.log(11111);
-            //alert(100)
-            // this.ocntent = this.$route.params.con
-            // console.log(this.content);
-    
-            // this.index = this.$route.params.index
-            // console.log(this.index);
             this.$http({
                 methods: "get",
                 url: "https://elm.cangdu.org/v1/users/22598/addresses"
@@ -279,23 +294,10 @@
                 console.log(res);
                 this.addData = res.data;
             });
-        },
-        beforeRouteUpdate(to, from, next) {
-            //alert(100)
-    
-            next();
-    
             this.content = this.$route.params.con;
             console.log(this.content);
-    
             this.index = this.$route.params.index;
             console.log(this.index);
-    
-            // console.log(this.content[this.index].tag);
-    
-            // this.iscolor = this.$route.params.color
-            // console.log(this.iscolor);
-    
             if (this.$route.params.value) {
                 this.kou = this.$route.params.value;
             }
@@ -321,8 +323,14 @@
                 } else {
                     this.kou = null;
                 }
+    
             }
-        }
+    
+        },
+        // beforeRouteUpdate(to, from, next) {
+        //     next();
+    
+        // }
     };
 </script>
 
@@ -373,19 +381,19 @@
     
     .address-img1 {
         /* position: absolute;
-          left: 0.1rem;
-          top: 0.8rem; */
+              left: 0.1rem;
+              top: 0.8rem; */
         width: 0.2rem;
     }
     
     .address-img2 {
         /* position: absolute;
-          top: 0.8rem;
-          right: 0.3rem; */
+              top: 0.8rem;
+              right: 0.3rem; */
         width: 0.25rem;
     }
     
-    .address span {
+    .address span:first-child(1) {
         /* margin-top: 1rem; */
         /* line-height: 0.8rem; */
         /* padding-left: 1rem; */
@@ -554,7 +562,8 @@
     
     .result img {
         width: 0.4rem;
-        height: 0.3rem;;
+        height: 0.3rem;
+        ;
         margin: 0.1rem;
     }
     
@@ -564,18 +573,19 @@
         margin-top: 0.15rem;
     }
     
-    /* .result-1-0 img {
-        position: absolute;
-        top: 3.8rem;
-        width: 0.3rem;
-    }
     
-    .result-1-0 span {
-        position: absolute;
-        top: 4rem;
-        margin-left: 0.4rem;
-        font-size: 0.15rem;
-    } */
+    /* .result-1-0 img {
+            position: absolute;
+            top: 3.8rem;
+            width: 0.3rem;
+        }
+        
+        .result-1-0 span {
+            position: absolute;
+            top: 4rem;
+            margin-left: 0.4rem;
+            font-size: 0.15rem;
+        } */
     
     .result-1-0 {
         height: 0.4rem;
@@ -717,13 +727,15 @@
         line-height: 0.5rem;
         text-align: center;
     }
+    
+    
     /* 请求下来布局 */
     
     .title-top {
+        width: 100%;
         line-height: 0.3rem;
-        margin-right: 1rem;
+        margin-right: 0.5rem;
     }
-   
 </style>
 
 

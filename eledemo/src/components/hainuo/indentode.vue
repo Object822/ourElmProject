@@ -92,12 +92,28 @@
 
 <script>
     export default {
+        data() {
+            return {
+                details:""
+            }
+        },
         methods: {
             go() {
                 this.$router.go(-1)
             }
+        },
+        created () {
+            this.$http({
+                methods:"get",
+                url:"https://elm.cangdu.org/bos/v1/users/22598/orders/:order_id/snapshot"
+            }).then((res)=>{
+                this.details = res.data
+                console.log(this.details);
+                
+            });
         }
     };
+   
 </script>
 
 <style scoped>

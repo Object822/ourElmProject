@@ -190,11 +190,12 @@ export default {
 .code {
   float: right;
   margin-right: -0.3rem;
+  
 }
 
 .code p:nth-child(2) {
   color: #3190e8;
-  margin-top: 0.1rem;
+  /* margin-top: 0.01rem; */
 }
 
 .code p:nth-child(1) {

@@ -37,7 +37,7 @@
                 <!-- 第四行 -->
                 <div class="con4">
                     <span>送餐地址</span>
-                    <router-link :to="{name:'search'}">
+                    <router-link :to="{name:'searchcc'}">
                         <input type="text" placeholder="小区/写字楼/学校/等" v-model="shcool">
                     </router-link>
                 </div>
@@ -205,7 +205,7 @@
     
     .con {
         background-color: white;
-        height: 3.9rem;
+        /* height: 3.9rem; */
     }
     
     .foot {

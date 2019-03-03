@@ -1,5 +1,9 @@
 <template>
     <div>
+        <ul>
+            <li v-for="(isint ,index) in inmit" :key="index">
+                
+       
         <router-view v-if="$route.name =='indentode'"></router-view>
         <div v-if="$route.name=='indent'" class="indent">
             <div class="header">
@@ -11,18 +15,19 @@
             <!-- 中間部分 -->
             <ul class="cont">
                 <div class="cont-img">
-                    <img src="./img/u=1366704153,4289492387&fm=26&gp=0.jpg" alt="">
+                    <img :src=" '//elm.cangdu.org/img/'+ isint.restaurant_image_url" alt="">
+                   
                 </div>
                 <router-link :to="{name:'indentode'}">
                     <div class="cont-sp" @click="ko()">
-                        <span>我的牛肉麵</span>
-                        <p>2019-2-5 11:42</p>
+                        <span>{{isint.restaurant_name}}</span>
+                        <p>{{isint.formatted_created_at}}</p>
                     </div>
                     <p class="cont-p">等待支付</p>
                     <div class="sold1"></div>
                     <div class="cont-bot">
                         <p>ds</p>
-                        <p>￥23383.00</p>
+                        <p>￥{{isint.total_amount}}</p>
                     </div>
                 </router-link>
                 <div class="sold2"></div>
@@ -39,6 +44,8 @@
                 <div class="pop-foot" @click="pop1()">确认</div>
             </div>
         </transition>
+             </li>
+        </ul>
     </div>
 </template>
 
@@ -46,7 +53,8 @@
     export default {
         data() {
             return {
-                contSpan: false
+                contSpan: false,
+                inmit:""
             }
         },
         methods: {
@@ -64,6 +72,16 @@
             go(){
                 this.$router.go(-1)
             }
+        },
+        created() {
+            this.$http({
+                methods:"get",
+                url:"https://elm.cangdu.org/bos/orders?offset=0&limit=20"
+            }).then((res)=>{
+                this.inmit = res.data
+                console.log(this.inmit);
+                
+            })
         },
     }
 </script>
@@ -140,7 +158,7 @@
     .cont-sp p {
         font-size: 0.1rem;
         color: #aaa;
-        margin-top: 0.05rem;
+        /* margin-top: 0.05rem; */
     }
     
     .cont-p {

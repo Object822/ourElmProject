@@ -35,6 +35,19 @@ import ConfirmOrder from '../components/hainuo/ConfirmOrder.vue'
 import ChooseAddress from '../components/hainuo/ChooseAddress.vue'
 import Forget from '../components/hainuo/forget.vue'
 import Remark from '../components/hainuo/remark.vue'
+//暂时配置
+import Indent from '../components/hainuo/indent.vue'
+import Indentode from '../components/hainuo/indentode.vue'
+import Invoice from '../components/hainuo/invoice.vue'
+import Payment from '../components/hainuo/payment.vue'
+import Register from '../components/hainuo/register.vue'
+import Searchcc from '../components/hainuo/searchcc.vue'
+
+
+
+
+
+
 
 Vue.use(Router)
 
@@ -226,7 +239,43 @@ export default new Router({
           name: "commend",
           component: Commend
         }
+       
       ]
+    },
+     //暂时配置
+     {
+      path: "/indent",
+      name: "indent",
+      component: Indent
+    },
+    {
+      path: "/indentode",
+      name: "indentode",
+      component: Indentode
+     
+    },
+    {
+      path: "/invoice",
+      name: "invoice",
+      component: Invoice
+    },
+    {
+      path: "/payment",
+      name: "payment",
+      component: Payment
+     
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: Register
+      
+    },
+    {
+      path: "/searchcc",
+      name: "searchcc",
+      component: Searchcc
+      
     }
   ]
 })

@@ -13,10 +13,12 @@
       <!-- 新增地址 -->
       <div class="newaddress">
         <!-- 新增内容 -->
-        <router-link :to="{name:'confirmOrder'}" v-if="isOnline">
-          <ul class="content">
-            <li v-for="(gep ,index) in ged " :key="index" class="conli" @click="success(ged,index)">
-              <span class="el-icon-success"></span>
+        <!-- <router-link :to="{name:'confirmOrder'}"> -->
+          <ul class="content"  v-if="isOnline">
+             <span class="el-icon-success"></span>
+             <div class="el-success">
+            <li v-for="(gep ,index) in ged " :key="index" class="conli" @click="success(ged,index)" >
+             
               <div class="content-top">
                 <p style="line-height:.2rem;">
                   <span>{{gep.name}}</span>
@@ -33,8 +35,9 @@
                 </p>
               </div>
             </li>
+            </div>
           </ul>
-        </router-link>
+        <!-- </router-link> -->
       </div>
       <router-link :to="{name:'register'}">
         <div class="newadd">
@@ -82,7 +85,7 @@ export default {
     },
     success(con, index) {
       this.$router.push({
-        name: "confirm",
+        name: "confirmOrder",
         params: {
           con: con,
           index
@@ -172,10 +175,14 @@ export default {
 }
 
 .el-icon-success {
-  padding-top: 0.1rem;
+  float: left;
+  padding-top: 0.15rem;
   color: #4cd964;
   font-size: 0.2rem;
-  margin: 0.05rem;
+  /* margin: 0.05rem; */
+}
+.el-success{
+  padding-left: 0.3rem;
 }
 
 .content-top span:nth-child(1) {

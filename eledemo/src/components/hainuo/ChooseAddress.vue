@@ -98,7 +98,7 @@ export default {
       methods: "get",
       url: "https://elm.cangdu.org/v1/users/22598/addresses"
     }).then(res => {
-      console.log(res);
+      console.log(res,'ress');
       this.ged = res.data;
     });
   }
